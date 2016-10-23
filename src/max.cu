@@ -1,35 +1,39 @@
 #include "iterator.h"
 #include <thrust/functional.h>
+#include <thrust/transform.h>
 #include <cublas_v2.h>
+#include <iostream>
 
 typedef thrust::tuple<strideAccessor, intIter> my_tuple;
-typedef thrust::zip_iterator<my_tuple> my_zip;
-typedef thrust::tuple<double&, int&> el_tuple;
 
-struct whichMax : thrust::unary_function<el_tuple &, void>{
+struct whichMax : thrust::unary_function<double, int>{
   int dim;
   __host__ __device__ whichMax(int dim): dim(dim){}
 
-  __device__ void operator()(el_tuple &Tup){
+  __host__ __device__ int operator()(double &vec){
 
     cublasHandle_t handle;
     cublasCreate_v2(&handle);
-    int incx=1, n = dim;
-    double *x = thrust::raw_pointer_cast(&(thrust::get<0>(Tup)));
-    double *result = thrust::raw_pointer_cast(&(thrust::get<1>(Tup)));
+    int incx=1, n = dim, result =0;
+    double *vec_ptr = thrust::raw_pointer_cast(&vec);
     //find the first index of a maximal element
-    cublasIdamax(handle, x, incx, result)
+    cublasIdamax(handle, n, vec_ptr, incx, &result);
     cublasDestroy_v2(handle);
+    return result;
   }
 };
 
-void cublas_max(fvec_d x, ivec_d result, int n, int d){
+void cublas_max(fvec_d &x, ivec_d &result, int n, int d){
   stride f(d);
   strideIter siter = thrust::transform_iterator<stride, countIter>(thrust::make_counting_iterator<int>(0), f);
   strideAccessor stridex = thrust::permutation_iterator<realIter, strideIter>(x.begin(), siter);
-  my_tuple tup = thrust::tuple<strideAccessor, intIter>(stridex, result.begin());
-  my_zip zip = thrust::zip_iterator<my_tup>(tup);
+
   whichMax g(d);
+
   //find the index of maximum for each of n subvectors
-  thrust::for_each(zip, zip + n, g);
+  thrust::copy(result.begin(), result.end(), std::ostream_iterator<int>(std::cout, " "));
+  std::cout << std::endl;
+  thrust::transform(stridex, stridex + n, result.begin(),  g);
+  thrust::copy(result.begin(), result.end(), std::ostream_iterator<int>(std::cout, " "));
+  std::cout << std::endl;
 }
