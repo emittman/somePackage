@@ -10,7 +10,7 @@
 extern "C" SEXP Rcublas_max(SEXP x, SEXP n, SEXP dim){
 
   double *xptr = REAL(x);
-  int N = INTEGER(n)[0], D = INTEGER(n)[0];
+  int N = INTEGER(n)[0], D = INTEGER(dim)[0];
 
   fvec_d dx(xptr, xptr+N*D);
   ivec_d dresult(N);
