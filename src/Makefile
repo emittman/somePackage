@@ -2,8 +2,10 @@ NVCC_FLAGS = -arch=sm_35 -Xcompiler -fPIC -lcublas_device
 R_INC = ${R_HOME}/include
 LIBS = -lcublas_device -lcublas
 MY_LIB = /dev_link
+DEPS = dev_link/libmax.a
+
 #final SHLIB
-somePackage.so: somePackage.o Rmat_mult.o mat_mult.o libmax.a
+somePackage.so: somePackage.o Rmat_mult.o mat_mult.o $(DEPS)
 	nvcc -shared $(NVCC_FLAGS) somePackage.o Rmat_mult.o mat_mult.o -I$(R_INC) -I. $(LIBS) -L$(MY_LIB) -lmax -o somePackage.so
 
 #compile wrappers
