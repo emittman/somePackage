@@ -1,8 +1,8 @@
 NVCC_FLAGS = -arch=sm_35 -Xcompiler -fPIC -lcublas_device
 R_INC = ${R_HOME}/include
 LIBS = -lcublas_device -lcublas
-MY_LIB = /dev_link
-DEPS = /dev_link/libmax.a
+MY_LIB = dev_link
+DEPS = dev_link/libmax.a
 
 #final SHLIB
 somePackage.so: somePackage.o Rmat_mult.o mat_mult.o $(DEPS)
@@ -20,10 +20,10 @@ mat_mult.o: mat_mult.cu
 	nvcc -c $(NVCC_FLAGS) mat_mult.cu $(LIBS) -o mat_mult.o
 
 #libraries for device linked functions
-/dev_link/libmax.a: /dev_link/max.o
+dev_link/libmax.a: dev_link/max.o
 	nvcc -lib $(NVCC_FLAGS) $(LIBS) $< -o $@
 
-/dev_link/max.o: /dev_link/max.cu
+dev_link/max.o: dev_link/max.cu
 	nvcc -dc $(NVCC_FLAGS) $(LIBS) $*.cu -o $@
 
 
