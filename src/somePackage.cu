@@ -16,7 +16,7 @@ extern "C" SEXP Rcublas_max(SEXP x, SEXP n, SEXP dim){
   ivec_d dresult(N);
 
   cublas_max(dx, dresult, N, D);
-  
+
   ivec_h hresult(N);
   thrust::copy(dresult.begin(), dresult.end(), hresult.begin());
 
@@ -28,3 +28,5 @@ extern "C" SEXP Rcublas_max(SEXP x, SEXP n, SEXP dim){
   UNPROTECT(1);
   return indices;
 }
+
+
