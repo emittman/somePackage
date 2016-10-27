@@ -5,14 +5,11 @@ LIBS = -lcublas_device -lcublas
 somePackage.so: somePackage.o Rmat_mult.o mat_mult.o libmax.a
 	nvcc -shared $(NVCC_FLAGS) somePackage.o Rmat_mult.o mat_mult.o -I$(R_INC) -I. -L. $(LIBS) -lmax -o somePackage.so
 
-somePackage.o: somePackage.cu libmax.a
-	nvcc -c $(NVCC_FLAGS) somePackage.cu -lmax -I$(R_INC) -I. -o somePackage.o
+somePackage.o: somePackage.cu
+	nvcc -c $(NVCC_FLAGS) somePackage.cu -I$(R_INC) -I. -o somePackage.o
 
 Rmat_mult.o: Rmat_mult.cu
 	nvcc -c $(NVCC_FLAGS) Rmat_mult.cu -I$(R_INC) -I. -o Rmat_mult.o
-
-#lib_mat_mult.a: mat_mult.o
-#	nvcc -lib $(NVCC_FLAGS) $(LIBS) mat_mult.o -o libmat_mult.a
 
 mat_mult.o: mat_mult.cu
 	nvcc -c $(NVCC_FLAGS) mat_mult.cu $(LIBS) -o mat_mult.o
