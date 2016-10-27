@@ -2,6 +2,7 @@
 #include "mat_mult.h"
 #include <thrust/host_vector.h>
 #include <thrust/device_vector.h>
+#include <thrust/device_ptr.h>
 #include <R.h>
 #include <Rinternals.h>
 #include <Rmath.h>
