@@ -1,5 +1,5 @@
 NVCC_FLAGS = -arch=sm_35 -Xcompiler -fPIC -lcublas_device
-R_INC = /home/emittman/src/R-3.3.1/builddir/include
+R_INC = $(R_HOME)/include
 LIBS = -lcublas_device -lcublas
 
 somePackage.so: somePackage.o Rmat_mult.o mat_mult.o libmax.a
