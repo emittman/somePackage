@@ -23,8 +23,8 @@ mat_mult.o: mat_mult.cu
 /dev_link/libmax.a: /dev_link/$*.o
 	nvcc -lib $(NVCC_FLAGS) $(LIBS) $< -o $@
 
-/dev_link/%.o: dev_link/$*.cu
-	nvcc -dc $(NVCC_FLAGS) $(LIBS) $< -o $@
+/dev_link/%.o:
+	nvcc -dc $(NVCC_FLAGS) $(LIBS) $*.cu -o $@
 
 
 .PHONY: clean
