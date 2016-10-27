@@ -2,7 +2,7 @@
 
 // Multiply the arrays A and B on GPU and save the result in C
 // C(m,n) = A(m,k) * B(k,n)
-void gpu_blas_mmul(const float *A, const float *B, float *C, const int m, const int k, const int n) {
+void gpu_blas_mmult(const float *A, const float *B, float *C, const int m, const int k, const int n) {
   int lda=m,ldb=k,ldc=m;
   const float alf = 1;
   const float bet = 0;
