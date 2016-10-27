@@ -6,7 +6,7 @@ DEPS = dev_link/libmax.a
 OBJS = compile_fns/mat_mult.o
 
 #final SHLIB
-somePackage.so: somePackage.o Rmat_mult.o $(DEPS)
+somePackage.so: somePackage.o Rmat_mult.o $(DEPS) $(OBJS)
 	nvcc -shared $(NVCC_FLAGS) somePackage.o Rmat_mult.o $(OBJS) -I$(R_INC) -I. $(LIBS) -L$(MY_LIB) -lmax -o somePackage.so
 
 #compile wrappers
