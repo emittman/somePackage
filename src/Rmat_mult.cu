@@ -17,9 +17,9 @@ extern "C" SEXP Rmat_mult(SEXP A, SEXP B, SEXP M, SEXP K, SEXP N){
   fvec_d B_d(Bptr, Bptr + k*n);
   fvec_d C_d(m*n);
 
-  double *Adptr = thrust::raw_pointer_cast(&A_d.data());
-  double *Bdptr = thrust::raw_pointer_cast(&B_d.data());
-  double *Cdptr = thrust::raw_pointer_cast(&C_d.data());
+  double *Adptr = thrust::raw_pointer_cast(&A_d[0]);
+  double *Bdptr = thrust::raw_pointer_cast(&B_d[0]);
+  double *Cdptr = thrust::raw_pointer_cast(&C_d[0]);
   gpu_blas_mmult(Adptr, Bdptr, Cdptr, m, k, n);
 
   fvec_h C_h(m*n);
