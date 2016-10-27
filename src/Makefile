@@ -8,7 +8,7 @@ somePackage.so: somePackage.o Rmat_mult.o mat_mult.o libmax.a
 somePackage.o: somePackage.cu libmax.a
 	nvcc -c $(NVCC_FLAGS) somePackage.cu -lmax -I$(R_INC) -I. -o somePackage.o
 
-Rmat_mult.o: Rmat_mult.cu lib_mat_mult.a
+Rmat_mult.o: Rmat_mult.cu
 	nvcc -c $(NVCC_FLAGS) Rmat_mult.cu -I$(R_INC) -I. -o Rmat_mult.o
 
 #lib_mat_mult.a: mat_mult.o
