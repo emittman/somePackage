@@ -1,5 +1,5 @@
-#include "iterator.h"
-#include "mat_mult.h"
+#include "header/iterator.h"
+#include "header/mat_mult.h"
 #include <thrust/host_vector.h>
 #include <thrust/device_vector.h>
 #include <thrust/device_ptr.h>

@@ -1,4 +1,4 @@
-#include "../iterator.h"
+#include "../header/iterator.h"
 #include <thrust/functional.h>
 #include <thrust/transform.h>
 #include <cublas_v2.h>

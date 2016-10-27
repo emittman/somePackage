@@ -1,5 +1,5 @@
-#include "iterator.h"
-#include "max.h"
+#include "header/iterator.h"
+#include "header/max.h"
 #include <thrust/host_vector.h>
 #include <thrust/device_vector.h>
 #include <R.h>
