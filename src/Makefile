@@ -20,10 +20,10 @@ mat_mult.o: mat_mult.cu
 	nvcc -c $(NVCC_FLAGS) mat_mult.cu $(LIBS) -o mat_mult.o
 
 #libraries for device linked functions
-dev_link/*.a: dev_link/*.o
+dev_link/%.a: dev_link/%.o
 	nvcc -lib $(NVCC_FLAGS) $(LIBS) $< -o $@
 
-dev_link/*.o: dev_link/*.cu
+dev_link/%.o: dev_link/%.cu
 	nvcc -dc $(NVCC_FLAGS) $(LIBS) $< -o $@
 
 
