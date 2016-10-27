@@ -23,10 +23,5 @@ max.o: max.cu
 
 .PHONY: clean
 clean:
-	rm somePackage.so
-	rm somePackage.o
-	rm Rmat_mult.o
-	rm mat_mult.o
-	rm libmax.a
-	rm max.o
+	rm -f somePackage.so somePackage.o Rmat_mult.o mat_mult.o libmax.a max.o
 
