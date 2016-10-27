@@ -8,9 +8,9 @@
 #include <iostream>
 
 
-extern "C" SEXP Rmat_mult(SEXP A, SEXP B){
+extern "C" SEXP Rmat_mult(SEXP A, SEXP B, SEXP M, SEXP K, SEXP N){
 
-  int m = nrow(A), k = nrow(B), n = ncol(B);
+  int m = INTEGER(M)[0], k = INTEGER(K)[0], n = INTEGER(N)[0];
   double *Aptr = REAL(A), *Bptr = REAL(B);
   fvec_d A_d(Aptr, Aptr + m*k);
   fvec_d B_d(Bptr, Bptr + k*n);
