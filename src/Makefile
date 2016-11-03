@@ -34,7 +34,5 @@ dev_link/max.o: dev_link/max.cu
 
 .PHONY: clean
 clean:
-	rm -f somePackage.so somePackage.o Rmat_mult.o
-	rm -f dev_link/max.o dev_link/libmax.a
-	rm -f compile_fns/mat_mult.o
+	rm -f somePackage.so somePackage.o Rmat_mult.o mat_mult.o libmax.a max.o
 
