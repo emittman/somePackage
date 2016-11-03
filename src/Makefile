@@ -5,13 +5,10 @@ MY_LIB = dev_link
 DEPS = dev_link/libmax.a
 OBJS = compile_fns/mat_mult.o
 
-#make SHLIB
-libsomePackage.so: somePackageall.o
-	g++ -shared somePackageall.o -o libsomPackage.so -I$(R_INC) -lR
 
-#link everything
-somePackageall.o: somePackage.o Rmat_mult.o $(DEPS) $(OBJS)
-	nvcc -c $(NVCC_FLAGS) somePackage.o Rmat_mult.o $(OBJS) -I$(R_INC) -I. $(LIBS) -L$(MY_LIB) -lmax -o somePackageall.so
+#final SHLIB
+somePackage.so: somePackage.o Rmat_mult.o $(DEPS) $(OBJS)
+	nvcc -shared $(NVCC_FLAGS) somePackage.o Rmat_mult.o $(OBJS) -I$(R_INC) -I. $(LIBS) -L$(MY_LIB) -lmax -o somePackage.so
 
 #compile wrappers
 somePackage.o: somePackage.cu
