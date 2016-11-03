@@ -10,8 +10,8 @@ libsomePackage.so: somePackageall.o
 	g++ -shared somePackageall.o -o libsomPackage.so
 
 #link everything
-somePackagall.o: somePackage.o Rmat_mult.o $(DEPS) $(OBJS)
-	nvcc $(NVCC_FLAGS) somePackagell.o Rmat_mult.o $(OBJS) -I$(R_INC) -I. $(LIBS) -L$(MY_LIB) -lmax -o somePackage.so
+somePackageall.o: somePackage.o Rmat_mult.o $(DEPS) $(OBJS)
+	nvcc $(NVCC_FLAGS) somePackageall.o Rmat_mult.o $(OBJS) -I$(R_INC) -I. $(LIBS) -L$(MY_LIB) -lmax -o somePackage.so
 
 #compile wrappers
 somePackage.o: somePackage.cu
