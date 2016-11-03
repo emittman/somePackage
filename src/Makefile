@@ -7,7 +7,7 @@ OBJS = compile_fns/mat_mult.o
 
 #make SHLIB
 libsomePackage.so: somePackageall.o
-	g++ -shared somePackageall.o -o libsomPackage.so
+	g++ -shared somePackageall.o -o libsomPackage.so -I$(R_INC)
 
 #link everything
 somePackageall.o: somePackage.o Rmat_mult.o $(DEPS) $(OBJS)
