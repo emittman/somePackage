@@ -11,7 +11,7 @@ libsomePackage.so: somePackageall.o
 
 #link everything
 somePackageall.o: somePackage.o Rmat_mult.o $(DEPS) $(OBJS)
-	nvcc $(NVCC_FLAGS) somePackage.o Rmat_mult.o $(OBJS) -I$(R_INC) -I. $(LIBS) -L$(MY_LIB) -lmax -o somePackageall.so
+	nvcc -c $(NVCC_FLAGS) somePackage.o Rmat_mult.o $(OBJS) -I$(R_INC) -I. $(LIBS) -L$(MY_LIB) -lmax -o somePackageall.so
 
 #compile wrappers
 somePackage.o: somePackage.cu
